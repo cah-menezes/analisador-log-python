@@ -39,9 +39,17 @@ def analisar(logs, colaboradores):
             analisados.append(f"🚨 ALERTA: {usuario} acessou o sistema fora do horário comercial.")
     return analisados
 
+def relatorio(alertas):
+    print("=" * 40)
+    print ("RELATÓRIO DE AUDITORIA DE ACESSO")
+    print("=" * 40)
+    for alerta in alertas:
+        print(alerta)
+    pass
+
 # Programa principal
 if __name__ == "__main__":
     colaboradores = carregar_colaboradores()
     logs = carregar_logs()
     alertas = analisar(logs, colaboradores)
-    print(alertas)
+    relatorio(alertas)
