@@ -23,11 +23,19 @@ def carregar_colaboradores():
             colaboradores[linha["usuario"]] = linha
     return colaboradores
 
-def analisar():
-    pass
+def analisar(logs, colaboradores):
+    analisados = []
+    for linha in logs:
+        partes = linha.split(" | ")
+        usuario = partes[1]
+        ficha = colaboradores[usuario]
+        if ficha ["status"] == "desligado":
+            analisados.append(f"🚨 ALERTA: {usuario} está desligado mas acessou o sistema!")
+    return analisados
 
 # Programa principal
 if __name__ == "__main__":
     colaboradores = carregar_colaboradores()
     logs = carregar_logs()
-    print(logs)
+    alertas = analisar(logs, colaboradores)
+    print(alertas)
