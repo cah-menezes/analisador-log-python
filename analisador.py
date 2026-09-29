@@ -45,7 +45,9 @@ def relatorio(alertas):
     print("=" * 40)
     for alerta in alertas:
         print(alerta)
-    pass
+    print ("=" * 40)
+    print (f"Total de alertas: {len(alertas)}")
+    print ("=" * 40)
 
 # Programa principal
 if __name__ == "__main__":
