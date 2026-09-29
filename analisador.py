@@ -27,10 +27,16 @@ def analisar(logs, colaboradores):
     analisados = []
     for linha in logs:
         partes = linha.split(" | ")
+        data_hora = datetime.datetime.strptime(partes[0], "%Y-%m-%d %H:%M:%S")
+        hora = data_hora.hour
         usuario = partes[1]
         ficha = colaboradores[usuario]
         if ficha ["status"] == "desligado":
             analisados.append(f"🚨 ALERTA: {usuario} está desligado mas acessou o sistema!")
+        if ficha ["mfa"] == "nao":
+            analisados.append(f"🚨 ALERTA: {usuario} não tem mfa ativado.")
+        if hora < 8 or hora > 18:
+            analisados.append(f"🚨 ALERTA: {usuario} acessou o sistema fora do horário comercial.")
     return analisados
 
 # Programa principal
