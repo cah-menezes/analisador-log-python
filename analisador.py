@@ -1,4 +1,9 @@
-# Analisador de logs > melhorar descrição
+"""
+Analisador de Log de Auditoria
+Lê registros de acesso (auth.log) e cruza com a base de colaboradores
+para identificar comportamentos suspeitos: usuários desligados, sem MFA
+e acessos fora do horário comercial.
+"""
 
 import csv
 import datetime
