@@ -7,6 +7,14 @@ Scripts em Python que automatizam a revisão de registros de acesso: cruzam logs
 
 ---
 
+## 🎯 O problema que resolve
+
+Em GRC, revisar logs de acesso manualmente é lento, sujeito a erro e raramente acontece com a frequência necessária. O risco real não é a falta do log — é ele existir e ninguém conseguir analisá-lo a tempo.
+
+Os scripts automatizam esse processo: cruzam os registros com a base de colaboradores e sinalizam comportamentos que precisam de atenção, gerando evidência pronta para auditoria.
+
+---
+
 ## 🚨 O que o analisador detecta
 
 - **Usuário desligado** acessando o sistema
