@@ -1,47 +1,53 @@
-# 🔍 Analisador de Log de Auditoria
+# 🔍 Analisador e Exportador de Log de Auditoria
 
-Script em Python que automatiza a revisão de registros de acesso, cruzando logs de autenticação com a base de colaboradores para identificar comportamentos suspeitos e gerar relatório de evidência — sem precisar revisar linha por linha manualmente.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Segurança da Informação](https://img.shields.io/badge/Segurança_da_Informação-GRC-E74C3C?style=flat)
 
-> Projeto desenvolvido como parte de uma trilha de automação aplicada à segurança da informação e GRC.
+Scripts em Python que automatizam a revisão de registros de acesso: cruzam logs de autenticação com a base de colaboradores para identificar comportamentos suspeitos e exportam o resultado como evidência de auditoria — sem precisar revisar linha por linha manualmente.
 
-## 🚨 O que ele detecta
+---
+
+## 🚨 O que o analisador detecta
 
 - **Usuário desligado** acessando o sistema
 - **Usuário sem MFA** ativo
 - **Login fora do horário comercial** (antes das 8h ou depois das 18h)
 
-## 📄 Saída
+## 📤 O que o exportador faz
 
-Gera automaticamente um arquivo `.txt` com o relatório de inconsistências encontradas, pronto para ser usado como evidência de auditoria.
+Recebe os alertas gerados pelo analisador e salva automaticamente um arquivo `.txt` na pasta `relatorios/`, com data e hora no nome — pronto para uso como evidência de auditoria.
 
-## 🛠️ Tecnologias
+```
+relatorios/relatorio_2024-09-15_23-47-00.txt
+```
 
-- Python 3 (`csv`, `datetime`, `os`)
-- Git & GitHub
+Cada execução gera um arquivo novo, sem sobrescrever os anteriores.
+
+---
 
 ## 📂 Arquivos
 
-- `analisador.py` → script principal de análise e exportação
-- `auth.log` → registros de acesso simulados
-- `colaboradores.csv` → base de colaboradores com status e MFA
+- `analisador.py` — lógica de análise: lê o log, cruza com a base e gera os alertas
+- `exportador.py` — salva os alertas em `.txt` com timestamp
+- `auth.log` — registros de acesso simulados
+- `colaboradores.csv` — base de colaboradores com status e MFA
 
-## 🏁 Como executar
+## 🚀 Como executar
 
-1. Clone o repositório:
+**Só a análise no terminal:**
 ```bash
 git clone https://github.com/cah-menezes/analisador-log-python.git
 cd analisador-log-python
-```
-
-2. Execute o analisador:
-```bash
 python3 analisador.py
 ```
 
-O relatório será gerado automaticamente na pasta `relatorios/`.
+**Com exportação do relatório:**
+```bash
+python3 exportador.py
+```
 
-## 💡 Possíveis evoluções
+O relatório será salvo automaticamente em `relatorios/`. Se a pasta não existir, o script cria sozinho.
 
-- Detecção de padrões de IP suspeito
-- Exportação em `.csv` para análise em planilha
-- Integração com base de dados real via SQL
+---
+
+*Projeto desenvolvido como parte de uma trilha de automação aplicada à segurança da informação e GRC.*
